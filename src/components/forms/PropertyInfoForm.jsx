@@ -25,6 +25,7 @@ import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import Footer from "../layout/Footer";
 import { cn } from "@/lib/utils";
+import { Textarea } from "../ui/textarea";
 
 // ==============================================
 // MODAL COMPONENTS
@@ -55,60 +56,75 @@ const PropertyAddressModal = ({ open, onClose, onSubmit, initialData }) => {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Property Address</DialogTitle>
-        </DialogHeader>
+      <DialogContent className="w-full max-w-2xl rounded-[14px] border border-[#E0E0E0] bg-white p-0">
+        {/* Custom Header */}
+        <div className="w-full rounded-t-[14px] px-6 py-4 border-b border-[#E0E0E0] bg-[#F4F4F4]">
+          <DialogHeader className="p-0">
+            <DialogTitle className="text-lg font-semibold">
+              Property address
+            </DialogTitle>
+          </DialogHeader>
+        </div>
 
-        <div className="space-y-4">
-          <div>
-            <Label>Property name as identifier *</Label>
-            <Input
-              value={formData.propertyName}
-              onChange={(e) => handleChange("propertyName", e.target.value)}
-              className="rentyard-input mt-1"
-            />
+        <div className="px-6 py-6">
+          {/* Form Content */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+            <div>
+              <Label>Property name as identifier *</Label>
+              <Input
+                value={formData.propertyName}
+                onChange={(e) => handleChange("propertyName", e.target.value)}
+                className="rentyard-input mt-1"
+              />
+            </div>
+            <div>
+              <Label>Total apartment unit *</Label>
+              <Input
+                type="number"
+                value={formData.totalUnits}
+                onChange={(e) => handleChange("totalUnits", e.target.value)}
+                className="rentyard-input mt-1"
+              />
+            </div>
+            <div>
+              <Label>Property website (optional)</Label>
+              <Input
+                value={formData.website}
+                onChange={(e) => handleChange("website", e.target.value)}
+                className="rentyard-input mt-1"
+                placeholder="https://"
+              />
+            </div>
           </div>
 
-          <div>
-            <Label>Total apartment unit *</Label>
-            <Input
-              type="number"
-              value={formData.totalUnits}
-              onChange={(e) => handleChange("totalUnits", e.target.value)}
-              className="rentyard-input mt-1"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+            <div>
+              <Label>Street address *</Label>
+              <Input
+                value={formData.streetAddress}
+                onChange={(e) => handleChange("streetAddress", e.target.value)}
+                className="rentyard-input mt-1"
+              />
+            </div>
+            <div>
+              <Label>Apt, suite, unit (if applicable)</Label>
+              <Input
+                value={formData.unit}
+                onChange={(e) => handleChange("unit", e.target.value)}
+                className="rentyard-input mt-1"
+              />
+            </div>
+            <div>
+              <Label>Zip code *</Label>
+              <Input
+                value={formData.zip}
+                onChange={(e) => handleChange("zip", e.target.value)}
+                className="rentyard-input mt-1"
+              />
+            </div>
           </div>
 
-          <div>
-            <Label>Property website (optional)</Label>
-            <Input
-              value={formData.website}
-              onChange={(e) => handleChange("website", e.target.value)}
-              className="rentyard-input mt-1"
-              placeholder="https://"
-            />
-          </div>
-
-          <div>
-            <Label>Street address *</Label>
-            <Input
-              value={formData.streetAddress}
-              onChange={(e) => handleChange("streetAddress", e.target.value)}
-              className="rentyard-input mt-1"
-            />
-          </div>
-
-          <div>
-            <Label>Apt, suite, unit (if applicable)</Label>
-            <Input
-              value={formData.unit}
-              onChange={(e) => handleChange("unit", e.target.value)}
-              className="rentyard-input mt-1"
-            />
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
             <div>
               <Label>City/Town *</Label>
               <Input
@@ -117,15 +133,14 @@ const PropertyAddressModal = ({ open, onClose, onSubmit, initialData }) => {
                 className="rentyard-input mt-1"
               />
             </div>
-
-            <div>
+            <div className="md:col-span-2">
               <Label>State/Territory *</Label>
               <Select
                 value={formData.state}
                 onValueChange={(value) => handleChange("state", value)}
               >
                 <SelectTrigger className="rentyard-input mt-1">
-                  <SelectValue placeholder="Select state" />
+                  <SelectValue placeholder="Choose state" />
                 </SelectTrigger>
                 <SelectContent>
                   {US_STATES.map((state) => (
@@ -137,22 +152,13 @@ const PropertyAddressModal = ({ open, onClose, onSubmit, initialData }) => {
               </Select>
             </div>
           </div>
-
-          <div>
-            <Label>Zip code *</Label>
-            <Input
-              value={formData.zip}
-              onChange={(e) => handleChange("zip", e.target.value)}
-              className="rentyard-input mt-1"
-            />
+          {/* Footer */}
+          <div className="flex justify-end gap-3 mt-6">
+            <Button variant="outline" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button onClick={handleSubmit}>Add</Button>
           </div>
-        </div>
-
-        <div className="flex justify-end gap-3 mt-6">
-          <Button variant="outline" onClick={onClose}>
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit}>Add Property</Button>
         </div>
       </DialogContent>
     </Dialog>
@@ -181,12 +187,17 @@ const PetFeesModal = ({ open, onClose, onSubmit, initialData }) => {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Pet Fees</DialogTitle>
-        </DialogHeader>
+      <DialogContent className="w-full max-w-2xl rounded-[14px] border border-[#E0E0E0] bg-white p-0">
+        {/* Custom Header */}
+        <div className="w-full rounded-t-[14px] px-6 py-4 border-b border-[#E0E0E0] bg-[#F4F4F4]">
+          <DialogHeader className="p-0">
+            <DialogTitle className="text-lg font-semibold">
+              Pet Fees
+            </DialogTitle>
+          </DialogHeader>
+        </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 px-6 py-6">
           <div>
             <Label>Pet type *</Label>
             <Select
@@ -253,13 +264,13 @@ const PetFeesModal = ({ open, onClose, onSubmit, initialData }) => {
               placeholder="$0.00"
             />
           </div>
-        </div>
 
-        <div className="flex justify-end gap-3 mt-6">
-          <Button variant="outline" onClick={onClose}>
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit}>Add Pet Fee</Button>
+          <div className="flex justify-end gap-3 mt-6">
+            <Button variant="outline" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button onClick={handleSubmit}>Add Pet Fee</Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
@@ -287,12 +298,16 @@ const LeasingInfoModal = ({ open, onClose, onSubmit, initialData }) => {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Leasing Info</DialogTitle>
-        </DialogHeader>
+      <DialogContent className="w-full max-w-2xl rounded-[14px] border border-[#E0E0E0] bg-white p-0">
+        <div className="w-full rounded-t-[14px] px-6 py-4 border-b border-[#E0E0E0] bg-[#F4F4F4]">
+          <DialogHeader className="p-0">
+            <DialogTitle className="text-lg font-semibold">
+              Leasing Info
+            </DialogTitle>
+          </DialogHeader>
+        </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 px-6 py-6">
           <div>
             <Label>Leasing info *</Label>
             <Input
@@ -332,13 +347,12 @@ const LeasingInfoModal = ({ open, onClose, onSubmit, initialData }) => {
             />
             <Label htmlFor="same-address">Address same as property</Label>
           </div>
-        </div>
-
-        <div className="flex justify-end gap-3 mt-6">
-          <Button variant="outline" onClick={onClose}>
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit}>Add Leasing Info</Button>
+          <div className="flex justify-end gap-3 mt-6">
+            <Button variant="outline" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button onClick={handleSubmit}>Add Leasing Info</Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
@@ -364,12 +378,16 @@ const ParkingModal = ({ open, onClose, onSubmit, initialData }) => {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Parking Information</DialogTitle>
-        </DialogHeader>
+      <DialogContent className="w-full max-w-2xl rounded-[14px] border border-[#E0E0E0] bg-white p-0">
+        <div className="w-full rounded-t-[14px] px-6 py-4 border-b border-[#E0E0E0] bg-[#F4F4F4]">
+          <DialogHeader className="p-0">
+            <DialogTitle className="text-lg font-semibold">
+              Parking Information
+            </DialogTitle>
+          </DialogHeader>
+        </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 px-6 py-6">
           <div>
             <Label>Guest vehicle parking time *</Label>
             <Select
@@ -401,13 +419,12 @@ const ParkingModal = ({ open, onClose, onSubmit, initialData }) => {
               {formData.parkingOverview.length}/200 characters
             </p>
           </div>
-        </div>
-
-        <div className="flex justify-end gap-3 mt-6">
-          <Button variant="outline" onClick={onClose}>
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit}>Add Parking Info</Button>
+          <div className="flex justify-end gap-3 mt-6">
+            <Button variant="outline" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button onClick={handleSubmit}>Add Parking Info</Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
@@ -433,12 +450,14 @@ const ChargesModal = ({ open, onClose, onSubmit, initialData }) => {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Charges</DialogTitle>
-        </DialogHeader>
+      <DialogContent className="w-full max-w-2xl rounded-[14px] border border-[#E0E0E0] bg-white p-0">
+        <div className="w-full rounded-t-[14px] px-6 py-4 border-b border-[#E0E0E0] bg-[#F4F4F4]">
+          <DialogHeader className="p-0">
+            <DialogTitle className="text-lg font-semibold">Charges</DialogTitle>
+          </DialogHeader>
+        </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 px-6 py-6">
           <div>
             <Label>Application fee (one-time) *</Label>
             <div className="flex items-center gap-2">
@@ -467,13 +486,12 @@ const ChargesModal = ({ open, onClose, onSubmit, initialData }) => {
           <p className="text-sm text-muted-foreground">
             Type 0 if charges not applicable
           </p>
-        </div>
-
-        <div className="flex justify-end gap-3 mt-6">
-          <Button variant="outline" onClick={onClose}>
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit}>Add Charges</Button>
+          <div className="flex justify-end gap-3 mt-6">
+            <Button variant="outline" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button onClick={handleSubmit}>Add Charges</Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
@@ -505,12 +523,16 @@ const EducationalInstitutionModal = ({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Educational Institution</DialogTitle>
-        </DialogHeader>
+      <DialogContent className="w-full max-w-2xl rounded-[14px] border border-[#E0E0E0] bg-white p-0">
+        <div className="w-full rounded-t-[14px] px-6 py-4 border-b border-[#E0E0E0] bg-[#F4F4F4]">
+          <DialogHeader className="p-0">
+            <DialogTitle className="text-lg font-semibold">
+              Educational Institution
+            </DialogTitle>
+          </DialogHeader>
+        </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 px-6 py-6">
           <div>
             <Label>Educational institution type *</Label>
             <Select
@@ -558,13 +580,12 @@ const EducationalInstitutionModal = ({
               placeholder="Institution name"
             />
           </div>
-        </div>
-
-        <div className="flex justify-end gap-3 mt-6">
-          <Button variant="outline" onClick={onClose}>
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit}>Add Institution</Button>
+          <div className="flex justify-end gap-3 mt-6">
+            <Button variant="outline" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button onClick={handleSubmit}>Add Institution</Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
@@ -591,12 +612,16 @@ const RentFrequencyModal = ({ open, onClose, onSubmit, initialData }) => {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Rent Frequency & Payment Reminder</DialogTitle>
-        </DialogHeader>
+      <DialogContent className="w-full max-w-2xl rounded-[14px] border border-[#E0E0E0] bg-white p-0">
+        <div className="w-full rounded-t-[14px] px-6 py-4 border-b border-[#E0E0E0] bg-[#F4F4F4]">
+          <DialogHeader lassName="p-0">
+            <DialogTitle className="text-lg font-semibold">
+              Rent Frequency & Payment Reminder
+            </DialogTitle>
+          </DialogHeader>
+        </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 px-6 py-6">
           <div>
             <Label>Rent payment frequency *</Label>
             <Select
@@ -634,13 +659,12 @@ const RentFrequencyModal = ({ open, onClose, onSubmit, initialData }) => {
               className="rentyard-input mt-1"
             />
           </div>
-        </div>
-
-        <div className="flex justify-end gap-3 mt-6">
-          <Button variant="outline" onClick={onClose}>
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit}>Add Rent Info</Button>
+          <div className="flex justify-end gap-3 mt-6">
+            <Button variant="outline" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button onClick={handleSubmit}>Add Rent Info</Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
@@ -667,12 +691,16 @@ const NearestStationModal = ({ open, onClose, onSubmit, initialData }) => {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Nearest Station</DialogTitle>
-        </DialogHeader>
+      <DialogContent className="w-full max-w-2xl rounded-[14px] border border-[#E0E0E0] bg-white p-0">
+        <div className="w-full rounded-t-[14px] px-6 py-4 border-b border-[#E0E0E0] bg-[#F4F4F4]">
+          <DialogHeader className="p-0">
+            <DialogTitle className="text-lg font-semibold">
+              Nearest Station
+            </DialogTitle>
+          </DialogHeader>
+        </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 px-6 py-6">
           <div>
             <Label>Nearest station type *</Label>
             <Select
@@ -720,13 +748,12 @@ const NearestStationModal = ({ open, onClose, onSubmit, initialData }) => {
               placeholder="Station name"
             />
           </div>
-        </div>
-
-        <div className="flex justify-end gap-3 mt-6">
-          <Button variant="outline" onClick={onClose}>
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit}>Add Station</Button>
+          <div className="flex justify-end gap-3 mt-6">
+            <Button variant="outline" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button onClick={handleSubmit}>Add Station</Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
@@ -761,12 +788,16 @@ const ApplicationAgreementModal = ({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Application Agreement</DialogTitle>
-        </DialogHeader>
+      <DialogContent className="w-full max-w-2xl rounded-[14px] border border-[#E0E0E0] bg-white p-0">
+        <div className="w-full rounded-t-[14px] px-6 py-4 border-b border-[#E0E0E0] bg-[#F4F4F4]">
+          <DialogHeader className="p-0">
+            <DialogTitle className="text-lg font-semibold">
+              Application Agreement
+            </DialogTitle>
+          </DialogHeader>
+        </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 px-6 py-6">
           <div>
             <Label>Upload agreement *</Label>
             <FileUpload
@@ -791,13 +822,12 @@ const ApplicationAgreementModal = ({
               Accept immigrant & international student application
             </Label>
           </div>
-        </div>
-
-        <div className="flex justify-end gap-3 mt-6">
-          <Button variant="outline" onClick={onClose}>
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit}>Add Agreement</Button>
+          <div className="flex justify-end gap-3 mt-6">
+            <Button variant="outline" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button onClick={handleSubmit}>Add Agreement</Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
@@ -824,12 +854,16 @@ const NearestLandmarkModal = ({ open, onClose, onSubmit, initialData }) => {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Nearest Landmark</DialogTitle>
-        </DialogHeader>
+      <DialogContent className="w-full max-w-2xl rounded-[14px] border border-[#E0E0E0] bg-white p-0">
+        <div className="w-full rounded-t-[14px] px-6 py-4 border-b border-[#E0E0E0] bg-[#F4F4F4]">
+          <DialogHeader className="p-0">
+            <DialogTitle className="text-lg font-semibold">
+              Nearest Landmark
+            </DialogTitle>
+          </DialogHeader>
+        </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 px-6 py-6">
           <div>
             <Label>Landmark type *</Label>
             <Input
@@ -869,13 +903,12 @@ const NearestLandmarkModal = ({ open, onClose, onSubmit, initialData }) => {
               placeholder="Landmark name"
             />
           </div>
-        </div>
-
-        <div className="flex justify-end gap-3 mt-6">
-          <Button variant="outline" onClick={onClose}>
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit}>Add Landmark</Button>
+          <div className="flex justify-end gap-3 mt-6">
+            <Button variant="outline" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button onClick={handleSubmit}>Add Landmark</Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
@@ -892,12 +925,16 @@ const AboutPropertyModal = ({ open, onClose, onSubmit, initialData }) => {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>About the Property</DialogTitle>
-        </DialogHeader>
+      <DialogContent className="w-full max-w-2xl rounded-[14px] border border-[#E0E0E0] bg-white p-0">
+        <div className="w-full rounded-t-[14px] px-6 py-4 border-b border-[#E0E0E0] bg-[#F4F4F4]">
+          <DialogHeader className="p-0">
+            <DialogTitle className="text-lg font-semibold">
+              About the Property
+            </DialogTitle>
+          </DialogHeader>
+        </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 px-6 py-6">
           <Textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -907,13 +944,12 @@ const AboutPropertyModal = ({ open, onClose, onSubmit, initialData }) => {
           <p className="text-sm text-muted-foreground text-right">
             {description.length}/500 characters
           </p>
-        </div>
-
-        <div className="flex justify-end gap-3 mt-6">
-          <Button variant="outline" onClick={onClose}>
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit}>Save Description</Button>
+          <div className="flex justify-end gap-3 mt-6">
+            <Button variant="outline" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button onClick={handleSubmit}>Save Description</Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
@@ -939,12 +975,16 @@ const UtilitiesProviderModal = ({ open, onClose, onSubmit, initialData }) => {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Utilities Provider</DialogTitle>
-        </DialogHeader>
+      <DialogContent className="w-full max-w-2xl rounded-[14px] border border-[#E0E0E0] bg-white p-0">
+        <div className="w-full rounded-t-[14px] px-6 py-4 border-b border-[#E0E0E0] bg-[#F4F4F4]">
+          <DialogHeader className="p-0">
+            <DialogTitle className="text-lg font-semibold">
+              Utilities Provider
+            </DialogTitle>
+          </DialogHeader>
+        </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 px-6 py-6">
           <div>
             <Label>Utility type *</Label>
             <Select
@@ -973,13 +1013,12 @@ const UtilitiesProviderModal = ({ open, onClose, onSubmit, initialData }) => {
               placeholder="Company name"
             />
           </div>
-        </div>
-
-        <div className="flex justify-end gap-3 mt-6">
-          <Button variant="outline" onClick={onClose}>
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit}>Add Provider</Button>
+          <div className="flex justify-end gap-3 mt-6">
+            <Button variant="outline" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button onClick={handleSubmit}>Add Provider</Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
@@ -1009,12 +1048,16 @@ const AmenitiesModal = ({ open, onClose, onSubmit, initialData }) => {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-2xl">
-        <DialogHeader>
-          <DialogTitle>Community Amenities/Features</DialogTitle>
-        </DialogHeader>
+      <DialogContent className="w-full max-w-2xl rounded-[14px] border border-[#E0E0E0] bg-white p-0">
+        <div className="w-full rounded-t-[14px] px-6 py-4 border-b border-[#E0E0E0] bg-[#F4F4F4]">
+          <DialogHeader className="p-0">
+            <DialogTitle className="text-lg font-semibold">
+              Community Amenities/Features
+            </DialogTitle>
+          </DialogHeader>
+        </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 px-6 py-6">
           <div className="relative">
             <Input
               value={searchTerm}
@@ -1065,13 +1108,12 @@ const AmenitiesModal = ({ open, onClose, onSubmit, initialData }) => {
               </div>
             ))}
           </div>
-        </div>
-
-        <div className="flex justify-end gap-3 mt-6">
-          <Button variant="outline" onClick={onClose}>
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit}>Add Amenities</Button>
+          <div className="flex justify-end gap-3 mt-6">
+            <Button variant="outline" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button onClick={handleSubmit}>Add Amenities</Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
@@ -1120,12 +1162,20 @@ export default function PropertyInfoForm({
   }, [propertyInfo]);
 
   const handleAddItem = (type, item) => {
-    if (editIndex !== null) {
+    // Ensure the property exists and is an array
+    if (!propertyInfo[type] || !Array.isArray(propertyInfo[type])) {
+      setPropertyInfo({
+        ...propertyInfo,
+        [type]: [item], // Initialize as new array with the item
+      });
+    } else if (editIndex !== null) {
+      // Edit existing item
       const updatedItems = [...propertyInfo[type]];
       updatedItems[editIndex] = item;
       setPropertyInfo({ ...propertyInfo, [type]: updatedItems });
       setEditIndex(null);
     } else {
+      // Add new item
       setPropertyInfo({
         ...propertyInfo,
         [type]: [...propertyInfo[type], item],
@@ -1339,7 +1389,10 @@ export default function PropertyInfoForm({
     switch (type) {
       case "addresses":
         return (
-          <div className="rentyard-card p-4 flex justify-between items-center">
+          <div
+            key={`address-${item.id || index}`}
+            className="rentyard-card p-4 flex justify-between items-center"
+          >
             <div>
               {item.propertyName}, {item.streetAddress}, {item.city},{" "}
               {item.state} {item.zip}
