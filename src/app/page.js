@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Header from "@/components/layout/Header";
 import PropertyTypeSelection from "@/components/forms/PropertyTypeSelection";
 import RoleSelection from "@/components/forms/RoleSelection";
@@ -19,13 +19,23 @@ export default function Home() {
     isStepValid,
   } = useMultiStepForm();
 
+  // Create a batched update function
+  const batchedUpdateFormData = useCallback(
+    (newData) => {
+      requestAnimationFrame(() => {
+        updateFormData(newData);
+      });
+    },
+    [updateFormData]
+  );
+
   const renderCurrentStep = () => {
     switch (currentStep) {
       case 1:
         return (
           <PropertyTypeSelection
             formData={formData}
-            updateFormData={updateFormData}
+            updateFormData={batchedUpdateFormData}
             nextStep={nextStep}
           />
         );
@@ -33,7 +43,7 @@ export default function Home() {
         return (
           <RoleSelection
             formData={formData}
-            updateFormData={updateFormData}
+            updateFormData={batchedUpdateFormData}
             nextStep={nextStep}
             prevStep={prevStep}
           />
@@ -42,7 +52,7 @@ export default function Home() {
         return (
           <VerificationForms
             formData={formData}
-            updateFormData={updateFormData}
+            updateFormData={batchedUpdateFormData}
             nextStep={nextStep}
             prevStep={prevStep}
           />
@@ -51,7 +61,7 @@ export default function Home() {
         return (
           <PropertyInfoForm
             formData={formData}
-            updateFormData={updateFormData}
+            updateFormData={batchedUpdateFormData}
             nextStep={nextStep}
             prevStep={prevStep}
           />
@@ -60,7 +70,7 @@ export default function Home() {
         return (
           <PlanSelection
             formData={formData}
-            updateFormData={updateFormData}
+            updateFormData={batchedUpdateFormData}
             prevStep={prevStep}
           />
         );
@@ -68,7 +78,6 @@ export default function Home() {
         return null;
     }
   };
-
   return (
     <div className="min-h-screen bg-gray-50">
       <Header currentStep={currentStep} />

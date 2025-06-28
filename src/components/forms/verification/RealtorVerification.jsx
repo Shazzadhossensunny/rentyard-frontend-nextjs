@@ -14,14 +14,14 @@ export default function RealtorVerification({
   updateFormData,
   nextStep,
 }) {
-  const [verificationData, setVerificationData] = useState(
-    formData.verificationData || {
-      licenseNumber: "",
-      additionalDocs: null,
-      agreementDoc: null,
-      acceptTerms: false,
-    }
-  );
+  const [verificationData, setVerificationData] = useState({
+    licenseNumber: "",
+    additionalDocs: null,
+    agreementDoc: null,
+    acceptTerms: false,
+    // Merge with existing data if it exists
+    ...(formData.verificationData || {}),
+  });
 
   const handleInputChange = (field, value) => {
     const newData = { ...verificationData, [field]: value };

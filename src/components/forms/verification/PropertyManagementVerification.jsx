@@ -1,7 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useState, useCallback, useEffect, useRef } from "react";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,93 +22,60 @@ import {
 import FileUpload from "@/components/common/FileUpload";
 import PhoneInput from "@/components/common/PhoneInput";
 import { cn } from "@/lib/utils";
+import { US_STATES } from "@/lib/constants";
 
-const US_STATES = [
-  "Alabama",
-  "Alaska",
-  "Arizona",
-  "Arkansas",
-  "California",
-  "Colorado",
-  "Connecticut",
-  "Delaware",
-  "Florida",
-  "Georgia",
-  "Hawaii",
-  "Idaho",
-  "Illinois",
-  "Indiana",
-  "Iowa",
-  "Kansas",
-  "Kentucky",
-  "Louisiana",
-  "Maine",
-  "Maryland",
-  "Massachusetts",
-  "Michigan",
-  "Minnesota",
-  "Mississippi",
-  "Missouri",
-  "Montana",
-  "Nebraska",
-  "Nevada",
-  "New Hampshire",
-  "New Jersey",
-  "New Mexico",
-  "New York",
-  "North Carolina",
-  "North Dakota",
-  "Ohio",
-  "Oklahoma",
-  "Oregon",
-  "Pennsylvania",
-  "Rhode Island",
-  "South Carolina",
-  "South Dakota",
-  "Tennessee",
-  "Texas",
-  "Utah",
-  "Vermont",
-  "Virginia",
-  "Washington",
-  "West Virginia",
-  "Wisconsin",
-  "Wyoming",
-];
+const DEFAULT_VERIFICATION_DATA = {
+  companyName: "",
+  companyEIN: "",
+  companyTIN: "",
+  companyDoc: null,
+  country: "United States",
+  streetAddress: "",
+  streetNumber: "",
+  phone: "",
+  email: "",
+  city: "",
+  state: "",
+  zipCode: "",
+  acceptTerms: false,
+};
 
 export default function PropertyManagementVerification({
   formData,
   updateFormData,
   nextStep,
 }) {
-  const [verificationData, setVerificationData] = useState(
-    formData.verificationData || {
-      companyName: "",
-      companyEIN: "",
-      companyTIN: "",
-      companyDoc: null,
-      country: "United States",
-      streetAddress: "",
-      streetNumber: "",
-      phone: "",
-      email: "",
-      city: "",
-      state: "",
-      zipCode: "",
-      acceptTerms: false,
+  const [verificationData, setVerificationData] = useState(() => {
+    return {
+      ...DEFAULT_VERIFICATION_DATA,
+      ...(formData.verificationData || {}),
+    };
+  });
+
+  // Use ref to track changes and update parent
+  const updateQueued = useRef(false);
+
+  useEffect(() => {
+    if (updateQueued.current) {
+      updateFormData({ verificationData });
+      updateQueued.current = false;
     }
-  );
+  }, [verificationData, updateFormData]);
 
   const handleInputChange = (field, value) => {
-    const newData = { ...verificationData, [field]: value };
-    setVerificationData(newData);
-    updateFormData({ verificationData: newData });
+    setVerificationData((prev) => {
+      const newData = { ...prev, [field]: value };
+      updateQueued.current = true;
+      return newData;
+    });
   };
 
   const handleFileUpload = (file) => {
-    const newData = { ...verificationData, companyDoc: file };
-    setVerificationData(newData);
-    updateFormData({ verificationData: newData });
+    setVerificationData((prev) => {
+      const newData = { ...prev, companyDoc: file };
+      updateQueued.current = true;
+      return newData;
+    });
   };
 
   const canProceed =
@@ -316,21 +289,20 @@ export default function PropertyManagementVerification({
               Accept RentYard property adding terms & conditions
             </Label>
           </div>
-
-          {/* Get Started Button */}
-          <div className="pt-4">
-            <Button
-              onClick={() => canProceed && nextStep()}
-              disabled={!canProceed}
-              className={cn(
-                "rentyard-button w-full",
-                !canProceed && "opacity-50 cursor-not-allowed"
-              )}
-            >
-              Get Started
-            </Button>
-          </div>
         </CardContent>
+
+        <CardFooter className="border-t p-6">
+          <Button
+            onClick={() => canProceed && nextStep()}
+            disabled={!canProceed}
+            className={cn(
+              "rentyard-button w-full",
+              !canProceed && "opacity-50 cursor-not-allowed"
+            )}
+          >
+            Get Started
+          </Button>
+        </CardFooter>
       </Card>
     </div>
   );

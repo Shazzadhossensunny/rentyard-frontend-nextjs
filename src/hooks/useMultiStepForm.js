@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 export default function useMultiStepForm(totalSteps = 5) {
   const [currentStep, setCurrentStep] = useState(1);
@@ -32,9 +32,9 @@ export default function useMultiStepForm(totalSteps = 5) {
     paymentInfo: {},
   });
 
-  const updateFormData = (newData) => {
+  const updateFormData = useCallback((newData) => {
     setFormData((prev) => ({ ...prev, ...newData }));
-  };
+  }, []);
 
   const nextStep = () => {
     if (currentStep < totalSteps) {

@@ -614,7 +614,7 @@ const RentFrequencyModal = ({ open, onClose, onSubmit, initialData }) => {
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="w-full max-w-2xl rounded-[14px] border border-[#E0E0E0] bg-white p-0">
         <div className="w-full rounded-t-[14px] px-6 py-4 border-b border-[#E0E0E0] bg-[#F4F4F4]">
-          <DialogHeader lassName="p-0">
+          <DialogHeader className="p-0">
             <DialogTitle className="text-lg font-semibold">
               Rent Frequency & Payment Reminder
             </DialogTitle>
@@ -1418,7 +1418,10 @@ export default function PropertyInfoForm({
         );
       case "petFees":
         return (
-          <div className="rentyard-card p-4 flex justify-between items-center">
+          <div
+            key={index}
+            className="rentyard-card p-4 flex justify-between items-center"
+          >
             <div>
               {item.petType}: Max {item.maxWeight}lb, Fee: ${item.oneTimeFee},
               Deposit: ${item.securityDeposit}, Rent: ${item.monthlyRent}/mo
@@ -1444,7 +1447,10 @@ export default function PropertyInfoForm({
         );
       case "leasingInfo":
         return (
-          <div className="rentyard-card p-4 flex justify-between items-center">
+          <div
+            key={index}
+            className="rentyard-card p-4 flex justify-between items-center"
+          >
             <div>
               {item.leasingInfo}, Phone: {item.phone}, Email: {item.email}
             </div>
@@ -1495,7 +1501,10 @@ export default function PropertyInfoForm({
         );
       case "charges":
         return (
-          <div className="rentyard-card p-4 flex justify-between items-center">
+          <div
+            key={index}
+            className="rentyard-card p-4 flex justify-between items-center"
+          >
             <div>
               Application Fee: ${item.applicationFee}, Admin Fee: $
               {item.adminFee}
@@ -1549,7 +1558,10 @@ export default function PropertyInfoForm({
         );
       case "rentFrequency":
         return (
-          <div className="rentyard-card p-4 flex justify-between items-center">
+          <div
+            key={index}
+            className="rentyard-card p-4 flex justify-between items-center"
+          >
             <div>
               Payment: {item.paymentFrequency}, Reminder: {item.reminderDate},
               Due: {item.dueDate}
