@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { User, KeySquare, Building, ChevronLeft } from "lucide-react";
+import { User, KeySquare, Building } from "lucide-react";
 import { USER_ROLES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
@@ -26,19 +25,13 @@ export default function RoleSelection({
     updateFormData({ userRole: roleId });
   };
 
-  // const handleGetStarted = () => {
-  //   if (selectedRole) {
-  //     nextStep();
-  //   }
-  // };
-
   return (
     <div className="container mx-auto">
       {/* Header */}
       <div className="mb-12">
-        <h1 className="text-3xl font-bold text-text-primary mb-4">
+        <h2 className="text-2xl font-bold text-text-primary mb-8 text-left">
           Select Your Role
-        </h1>
+        </h2>
       </div>
 
       {/* Role Selection */}
@@ -77,29 +70,6 @@ export default function RoleSelection({
           })}
         </div>
       </div>
-
-      {/* Navigation Buttons */}
-      {/* <div className="flex items-center justify-between">
-        <Button
-          variant="ghost"
-          onClick={prevStep}
-          className="flex items-center gap-2 text-text-primary font-semibold underline hover:bg-gray-100"
-        >
-          <ChevronLeft className="w-4 h-4" />
-          Back
-        </Button>
-
-        <Button
-          onClick={handleGetStarted}
-          disabled={!selectedRole}
-          className={cn(
-            "rentyard-button px-8 py-3 text-lg",
-            !selectedRole && "opacity-50 cursor-not-allowed"
-          )}
-        >
-          Get Started
-        </Button>
-      </div> */}
     </div>
   );
 }

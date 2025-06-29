@@ -221,21 +221,8 @@ const PlanSelection = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm px-6 py-4 flex justify-between items-center">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
-            <span className="text-white font-bold text-sm">R</span>
-          </div>
-          <span className="text-xl font-semibold text-blue-600">RentYard</span>
-        </div>
-        <button className="text-gray-600 hover:text-gray-800">
-          Save & Exit
-        </button>
-      </div>
-
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-6 py-8">
+      <div className=" mx-auto px-6 py-8">
         <h1 className="text-2xl font-semibold text-gray-900 mb-8">
           Chose a plan for after 30-days free trial
         </h1>
@@ -376,11 +363,7 @@ const PlanSelection = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="flex justify-between items-center">
-          <button className="px-6 py-2 text-gray-600 hover:text-gray-800 font-medium">
-            Back
-          </button>
-
+        <div className="flex justify-end items-center">
           <div className="flex items-center gap-6">
             <div className="text-right">
               <span className="text-gray-600">Total with card charge: </span>

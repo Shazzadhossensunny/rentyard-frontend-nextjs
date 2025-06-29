@@ -124,10 +124,9 @@ export default function FileUpload({
             </Button>
           </div>
         ) : (
-          <div className="flex flex-col items-center gap-3 p-8">
-            <Upload className="w-12 h-12 text-primary" />
+          <div className="flex justify-center gap-3 px-4">
+            <Upload className="w-6 h-6 text-[#272B35]" />
             <div className="text-center">
-              <p className="font-semibold text-text-primary">Upload Document</p>
               <p className="text-sm text-text-secondary mt-1">
                 ({acceptedTypes} only)
               </p>

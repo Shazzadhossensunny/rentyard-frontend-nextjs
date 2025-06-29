@@ -82,8 +82,8 @@
 }
 
 .rentyard-file-upload {
-  @apply border border-dashed rounded-xl p-4 text-center cursor-pointer;
-  background-color: var(--accent);
+  @apply border border-dashed rounded-xl p-3 text-center cursor-pointer;
+  background-color: var(--input);
   border-color: var(--border);
 }
 

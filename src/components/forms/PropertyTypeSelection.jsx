@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Home, Building, Building2 } from "lucide-react";
 import { PROPERTY_TYPES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -27,12 +26,6 @@ export default function PropertyTypeSelection({
       updateFormData({ propertyType: typeId });
     }
   };
-
-  // const handleGetStarted = () => {
-  //   if (selectedType === "condominiums") {
-  //     nextStep();
-  //   }
-  // };
 
   return (
     <div className="container mx-auto">
@@ -85,20 +78,6 @@ export default function PropertyTypeSelection({
           })}
         </div>
       </div>
-
-      {/* Get Started Button */}
-      {/* <div className="text-right">
-        <Button
-          onClick={handleGetStarted}
-          disabled={selectedType !== "condominiums"}
-          className={cn(
-            "rentyard-button px-6 py-3 text-lg",
-            selectedType !== "condominiums" && "opacity-50 cursor-not-allowed"
-          )}
-        >
-          Get Started
-        </Button>
-      </div> */}
     </div>
   );
 }

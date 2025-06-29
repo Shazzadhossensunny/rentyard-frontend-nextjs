@@ -39,14 +39,18 @@ export default function PhoneInput({ value = "", onChange, className = "" }) {
   };
 
   return (
-    <div className={`flex ${className}`}>
-      <Select value={selectedCountry.code} onValueChange={handleCountryChange}>
-        <SelectTrigger className="w-24 rounded-r-none border-r-0 focus:z-10">
+    <div className="flex">
+      <Select
+        className="bg-[#E0E0E0]"
+        value={selectedCountry.code}
+        onValueChange={handleCountryChange}
+      >
+        <SelectTrigger className="w-24 h-12 rounded-r-none border-r-0 focus:z-10">
           <SelectValue>
             <span>{selectedCountry.flag}</span>
           </SelectValue>
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="bg-[#E0E0E0] relative z-50">
           {COUNTRY_CODES.map((country) => (
             <SelectItem
               key={`${country.code}-${country.country}`}
@@ -65,7 +69,7 @@ export default function PhoneInput({ value = "", onChange, className = "" }) {
         value={phoneNumber}
         onChange={handlePhoneChange}
         placeholder="(555) 123-4567"
-        className="flex-1 rounded-l-none focus:z-10 rentyard-input"
+        className="flex-1 !rounded-l-none focus:z-10 rentyard-input"
       />
     </div>
   );

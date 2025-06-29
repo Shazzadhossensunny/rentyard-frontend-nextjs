@@ -36,7 +36,7 @@ export default function Header({ currentStep = 1 }) {
 
           {/* Action Buttons */}
           <div className="flex items-center gap-3">
-            {currentStep > 2 && (
+            {currentStep > 1 && (
               <Button
                 variant="outline"
                 onClick={handleSaveExit}
@@ -56,7 +56,7 @@ export default function Header({ currentStep = 1 }) {
         </div>
 
         {/* Progress Bar */}
-        {currentStep > 2 && (
+        {/* {currentStep > 2 && (
           <div className="pb-4">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm text-text-secondary">
@@ -68,7 +68,7 @@ export default function Header({ currentStep = 1 }) {
             </div>
             <Progress value={((currentStep - 2) / 3) * 100} className="h-2" />
           </div>
-        )}
+        )} */}
       </div>
     </header>
   );

@@ -93,7 +93,7 @@ export default function CombinedStep({ formData, updateFormData, nextStep }) {
 
   return (
     <div className="pb-32">
-      <div className="grid grid-cols-1 gap-10">
+      <div className="grid grid-cols-1">
         <PropertyTypeSelection
           formData={formData}
           updateFormData={updateFormData}
@@ -107,7 +107,7 @@ export default function CombinedStep({ formData, updateFormData, nextStep }) {
         />
       </div>
 
-      <div className="mt-12">{renderVerificationForm()}</div>
+      <div className="mt-6">{renderVerificationForm()}</div>
 
       {/* Fixed Footer Actions */}
       <div className="fixed bottom-0 left-0 w-full bg-white border-t z-50 px-4 py-4">

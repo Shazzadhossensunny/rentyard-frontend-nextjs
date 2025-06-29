@@ -1,14 +1,8 @@
 "use client";
 
-import { useState, useCallback, useEffect, useRef } from "react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardFooter,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { useState, useEffect, useRef } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -21,8 +15,8 @@ import {
 } from "@/components/ui/select";
 import FileUpload from "@/components/common/FileUpload";
 import PhoneInput from "@/components/common/PhoneInput";
-import { cn } from "@/lib/utils";
 import { US_STATES } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 
 const DEFAULT_VERIFICATION_DATA = {
   companyName: "",
@@ -92,10 +86,10 @@ export default function PropertyManagementVerification({
     verificationData.acceptTerms;
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <Card className="rentyard-card">
-        <CardHeader className="bg-background-card rounded-t-xl">
-          <CardTitle className="text-xl font-semibold text-text-primary">
+    <div className="container mx-auto">
+      <Card>
+        <CardHeader className="bg-background-card rounded-t-xl border-b border-[#E0E0E0]">
+          <CardTitle className="text-lg font-medium text-[#6F6C6A]">
             Company & Office Info
           </CardTitle>
         </CardHeader>
@@ -250,7 +244,7 @@ export default function PropertyManagementVerification({
                 <SelectTrigger className="rentyard-input">
                   <SelectValue placeholder="Select state" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-[#E0E0E0] relative z-50">
                   {US_STATES.map((state) => (
                     <SelectItem key={state} value={state}>
                       {state}
@@ -280,7 +274,12 @@ export default function PropertyManagementVerification({
               onCheckedChange={(checked) =>
                 handleInputChange("acceptTerms", checked)
               }
-              className="mt-1"
+              className={cn(
+                "mt-1 h-4 w-4 rounded border border-[#D1D5DB]",
+                "data-[state=checked]:border-[#272B35] data-[state=checked]:bg-transparent",
+                "data-[state=checked]:text-[#272B35]",
+                "focus:ring-2 focus:ring-[#272B35] focus:ring-offset-2"
+              )}
             />
             <Label
               htmlFor="company-terms"
@@ -290,19 +289,6 @@ export default function PropertyManagementVerification({
             </Label>
           </div>
         </CardContent>
-
-        {/* <CardFooter className="border-t p-6">
-          <Button
-            onClick={() => canProceed && nextStep()}
-            disabled={!canProceed}
-            className={cn(
-              "rentyard-button w-full",
-              !canProceed && "opacity-50 cursor-not-allowed"
-            )}
-          >
-            Get Started
-          </Button>
-        </CardFooter> */}
       </Card>
     </div>
   );
