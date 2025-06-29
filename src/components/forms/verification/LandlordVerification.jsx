@@ -35,11 +35,11 @@ export default function LandlordVerification({
   const canProceed =
     verificationData.ownershipDoc && verificationData.acceptTerms;
 
-  const handleGetStarted = () => {
-    if (canProceed) {
-      nextStep();
-    }
-  };
+  // const handleGetStarted = () => {
+  //   if (canProceed) {
+  //     nextStep();
+  //   }
+  // };
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -80,7 +80,7 @@ export default function LandlordVerification({
           </div>
 
           {/* Get Started Button */}
-          <div className="pt-4">
+          {/* <div className="pt-4">
             <Button
               onClick={handleGetStarted}
               disabled={!canProceed}
@@ -91,7 +91,7 @@ export default function LandlordVerification({
             >
               Get Started
             </Button>
-          </div>
+          </div> */}
         </CardContent>
       </Card>
     </div>

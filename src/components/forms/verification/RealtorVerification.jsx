@@ -113,7 +113,7 @@ export default function RealtorVerification({
           </div>
 
           {/* Get Started Button */}
-          <div className="pt-4">
+          {/* <div className="pt-4">
             <Button
               onClick={() => canProceed && nextStep()}
               disabled={!canProceed}
@@ -124,7 +124,7 @@ export default function RealtorVerification({
             >
               Get Started
             </Button>
-          </div>
+          </div> */}
         </CardContent>
       </Card>
     </div>

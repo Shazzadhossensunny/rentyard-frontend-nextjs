@@ -28,11 +28,11 @@ export default function PropertyTypeSelection({
     }
   };
 
-  const handleGetStarted = () => {
-    if (selectedType === "condominiums") {
-      nextStep();
-    }
-  };
+  // const handleGetStarted = () => {
+  //   if (selectedType === "condominiums") {
+  //     nextStep();
+  //   }
+  // };
 
   return (
     <div className="container mx-auto">
@@ -87,7 +87,7 @@ export default function PropertyTypeSelection({
       </div>
 
       {/* Get Started Button */}
-      <div className="text-right">
+      {/* <div className="text-right">
         <Button
           onClick={handleGetStarted}
           disabled={selectedType !== "condominiums"}
@@ -98,7 +98,7 @@ export default function PropertyTypeSelection({
         >
           Get Started
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 }

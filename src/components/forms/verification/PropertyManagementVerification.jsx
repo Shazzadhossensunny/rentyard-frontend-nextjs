@@ -291,7 +291,7 @@ export default function PropertyManagementVerification({
           </div>
         </CardContent>
 
-        <CardFooter className="border-t p-6">
+        {/* <CardFooter className="border-t p-6">
           <Button
             onClick={() => canProceed && nextStep()}
             disabled={!canProceed}
@@ -302,7 +302,7 @@ export default function PropertyManagementVerification({
           >
             Get Started
           </Button>
-        </CardFooter>
+        </CardFooter> */}
       </Card>
     </div>
   );

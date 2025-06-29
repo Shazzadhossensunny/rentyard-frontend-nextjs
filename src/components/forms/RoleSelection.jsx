@@ -26,11 +26,11 @@ export default function RoleSelection({
     updateFormData({ userRole: roleId });
   };
 
-  const handleGetStarted = () => {
-    if (selectedRole) {
-      nextStep();
-    }
-  };
+  // const handleGetStarted = () => {
+  //   if (selectedRole) {
+  //     nextStep();
+  //   }
+  // };
 
   return (
     <div className="container mx-auto">
@@ -79,7 +79,7 @@ export default function RoleSelection({
       </div>
 
       {/* Navigation Buttons */}
-      <div className="flex items-center justify-between">
+      {/* <div className="flex items-center justify-between">
         <Button
           variant="ghost"
           onClick={prevStep}
@@ -99,7 +99,7 @@ export default function RoleSelection({
         >
           Get Started
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 }

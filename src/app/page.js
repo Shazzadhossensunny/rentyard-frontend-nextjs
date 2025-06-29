@@ -1,13 +1,11 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 import Header from "@/components/layout/Header";
-import PropertyTypeSelection from "@/components/forms/PropertyTypeSelection";
-import RoleSelection from "@/components/forms/RoleSelection";
-import VerificationForms from "@/components/forms/VerificationForms";
 import PropertyInfoForm from "@/components/forms/PropertyInfoForm";
 import PlanSelection from "@/components/forms/PlanSelection";
 import useMultiStepForm from "@/hooks/useMultiStepForm";
+import CombinedStep from "@/components/forms/CombinedStep";
 
 export default function Home() {
   const {
@@ -33,31 +31,13 @@ export default function Home() {
     switch (currentStep) {
       case 1:
         return (
-          <PropertyTypeSelection
+          <CombinedStep
             formData={formData}
             updateFormData={batchedUpdateFormData}
             nextStep={nextStep}
           />
         );
       case 2:
-        return (
-          <RoleSelection
-            formData={formData}
-            updateFormData={batchedUpdateFormData}
-            nextStep={nextStep}
-            prevStep={prevStep}
-          />
-        );
-      case 3:
-        return (
-          <VerificationForms
-            formData={formData}
-            updateFormData={batchedUpdateFormData}
-            nextStep={nextStep}
-            prevStep={prevStep}
-          />
-        );
-      case 4:
         return (
           <PropertyInfoForm
             formData={formData}
@@ -66,7 +46,7 @@ export default function Home() {
             prevStep={prevStep}
           />
         );
-      case 5:
+      case 3:
         return (
           <PlanSelection
             formData={formData}
