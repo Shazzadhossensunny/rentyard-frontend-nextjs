@@ -29,7 +29,7 @@ module.exports = {
         },
         text: {
           primary: "#272B35",
-          secondary: "#6F6C6A",
+          secondary: "#777980",
         },
         error: "#FF6A62",
         background: {

@@ -2,7 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { LogOut } from "lucide-react";
+import Image from "next/image";
+import LogoImg from "../../../public/logo.png";
 
 export default function Header({ currentStep = 1 }) {
   const totalSteps = 5;
@@ -25,12 +26,12 @@ export default function Header({ currentStep = 1 }) {
   };
 
   return (
-    <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <header className="bg-white border-b border-[#E0E0E0] sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-text-primary">RentYard</h1>
+            <Image src={LogoImg} alt="RentYard" width={150} height={150} />
           </div>
 
           {/* Action Buttons */}
@@ -47,9 +48,8 @@ export default function Header({ currentStep = 1 }) {
             <Button
               variant="outline"
               onClick={handleExit}
-              className="flex items-center gap-2 px-6 py-3 border border-stock rounded-xl font-semibold text-text-primary hover:bg-gray-50"
+              className="px-6 py-3 border border-stock rounded-xl font-semibold text-text-primary hover:bg-gray-50"
             >
-              <LogOut className="w-4 h-4" />
               <span className="hidden sm:inline">Exit</span>
             </Button>
           </div>

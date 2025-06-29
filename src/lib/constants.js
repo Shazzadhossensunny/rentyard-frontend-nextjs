@@ -3,18 +3,21 @@ export const PROPERTY_TYPES = [
     id: "single-house",
     title: "Single House Property",
     icon: "Home",
+    description: "Single unit house for single family",
     disabled: true,
   },
   {
     id: "apartments",
     title: "Apartments Complex",
     icon: "Building",
+    description: "Multiple unit house for families",
     disabled: true,
   },
   {
     id: "condominiums",
     title: "Condominiums",
     icon: "Building2",
+    description: "Multiple unit house for families",
     disabled: false,
   },
 ];
@@ -23,16 +26,19 @@ export const USER_ROLES = [
   {
     id: "landlord",
     title: "Landlord",
-    icon: "User",
+    description: "Owner of the property",
+    icon: "KeySquare",
   },
   {
     id: "realtor",
     title: "Realtor",
-    icon: "Briefcase",
+    description: "Manage property on behalf on owner",
+    icon: "User",
   },
   {
     id: "property-management",
     title: "Property Management Company",
+    description: "For management company",
     icon: "Building",
   },
 ];

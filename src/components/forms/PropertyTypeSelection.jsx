@@ -35,20 +35,17 @@ export default function PropertyTypeSelection({
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="container mx-auto">
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold text-text-primary mb-4">
           Welcome to RentYard
         </h1>
-        <p className="text-lg text-text-secondary">
-          Select your property type to get started
-        </p>
       </div>
 
       {/* Property Types */}
       <div className="mb-12">
-        <h2 className="text-2xl font-bold text-text-primary mb-8 text-center">
+        <h2 className="text-2xl font-bold text-text-primary mb-8 text-left">
           Property Type
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -69,23 +66,18 @@ export default function PropertyTypeSelection({
                 onClick={() => !isDisabled && handleTypeSelect(type.id)}
               >
                 <CardContent className="p-6 text-center">
-                  <div className="flex flex-col items-center gap-4">
-                    <div
-                      className={cn(
-                        "p-4 rounded-full",
-                        isSelected
-                          ? "bg-primary text-white"
-                          : "bg-gray-100 text-gray-600"
-                      )}
-                    >
+                  <div className="flex items-center text-left gap-4">
+                    <div className="p-4 rounded-full bg-[#F9FBFF] text-text-primary">
                       <IconComponent className="w-8 h-8" />
                     </div>
-                    <h3 className="text-lg font-semibold text-text-primary">
-                      {type.title}
-                    </h3>
-                    {isDisabled && (
-                      <p className="text-sm text-text-secondary">Coming Soon</p>
-                    )}
+                    <div className="space-y-2">
+                      <h3 className="text-base font-semibold text-text-primary">
+                        {type.title}
+                      </h3>
+                      <p className="text-sm font-medium text-text-secondary">
+                        {type.description}
+                      </p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -95,12 +87,12 @@ export default function PropertyTypeSelection({
       </div>
 
       {/* Get Started Button */}
-      <div className="text-center">
+      <div className="text-right">
         <Button
           onClick={handleGetStarted}
           disabled={selectedType !== "condominiums"}
           className={cn(
-            "rentyard-button px-8 py-3 text-lg",
+            "rentyard-button px-6 py-3 text-lg",
             selectedType !== "condominiums" && "opacity-50 cursor-not-allowed"
           )}
         >

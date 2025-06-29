@@ -3,13 +3,13 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { User, Briefcase, Building, ChevronLeft } from "lucide-react";
+import { User, KeySquare, Building, ChevronLeft } from "lucide-react";
 import { USER_ROLES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 const iconMap = {
+  KeySquare,
   User,
-  Briefcase,
   Building,
 };
 
@@ -33,15 +33,12 @@ export default function RoleSelection({
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="container mx-auto">
       {/* Header */}
-      <div className="text-center mb-12">
+      <div className="mb-12">
         <h1 className="text-3xl font-bold text-text-primary mb-4">
           Select Your Role
         </h1>
-        <p className="text-lg text-text-secondary">
-          Choose the option that best describes you
-        </p>
       </div>
 
       {/* Role Selection */}
@@ -61,20 +58,18 @@ export default function RoleSelection({
                 onClick={() => handleRoleSelect(role.id)}
               >
                 <CardContent className="p-8 text-center">
-                  <div className="flex flex-col items-center gap-4">
-                    <div
-                      className={cn(
-                        "p-4 rounded-full transition-colors",
-                        isSelected
-                          ? "bg-primary text-white"
-                          : "bg-gray-100 text-gray-600"
-                      )}
-                    >
+                  <div className="flex items-center text-left gap-4">
+                    <div className="p-4 rounded-full bg-[#F9FBFF] text-text-primary">
                       <IconComponent className="w-8 h-8" />
                     </div>
-                    <h3 className="text-xl font-semibold text-text-primary">
-                      {role.title}
-                    </h3>
+                    <div className="space-y-2">
+                      <h3 className="text-base font-semibold text-text-primary">
+                        {role.title}
+                      </h3>
+                      <p className="text-sm font-medium text-text-secondary">
+                        {role.description}
+                      </p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -88,7 +83,7 @@ export default function RoleSelection({
         <Button
           variant="ghost"
           onClick={prevStep}
-          className="flex items-center gap-2 text-text-primary font-semibold hover:bg-gray-100"
+          className="flex items-center gap-2 text-text-primary font-semibold underline hover:bg-gray-100"
         >
           <ChevronLeft className="w-4 h-4" />
           Back
